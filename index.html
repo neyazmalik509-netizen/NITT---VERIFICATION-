@@ -1,1 +1,41 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>NITT Certificate Verification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f5f5f5;text-align:center;padding:20px;}
+.box{background:#fff;padding:20px;border-radius:10px;max-width:400px;margin:auto;box-shadow:0 0 10px #ccc;}
+input{width:90%;padding:10px;margin:10px;}
+button{padding:10px 20px;background:#0066cc;color:#fff;border:none;border-radius:5px;}
+#result{margin-top:20px;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>NITT Certificate Verification</h2>
+
+<input type="text" id="cid" placeholder="Enter Certificate ID">
+<br>
+<button onclick="verify()">Verify</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+function verify(){
+var id=document.getElementById("cid").value;
+
+if(id=="NITT001"){
+document.getElementById("result").innerHTML=
+"✅ VERIFIED<br><br>Name: Rukshad Ali<br>Course: Safety Officer Training<br>Status: Valid";
+}else{
+document.getElementById("result").innerHTML="❌ Certificate Not Found";
+}
+}
+</script>
+
+</body>
+</html>
