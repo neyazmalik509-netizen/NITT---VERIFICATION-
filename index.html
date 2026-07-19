@@ -1,40 +1,135 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NITT Certificate Verification</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body{font-family:Arial;background:#f5f5f5;text-align:center;padding:20px;}
-.box{background:#fff;padding:20px;border-radius:10px;max-width:400px;margin:auto;box-shadow:0 0 10px #ccc;}
-input{width:90%;padding:10px;margin:10px;}
-button{padding:10px 20px;background:#0066cc;color:#fff;border:none;border-radius:5px;}
-#result{margin-top:20px;font-weight:bold;}
+body{
+font-family:Arial,sans-serif;
+background:#f2f2f2;
+margin:0;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+text-align:center;
+}
+
+h2{
+color:#0066cc;
+}
+
+input{
+width:90%;
+padding:12px;
+margin:15px 0;
+font-size:16px;
+}
+
+button{
+padding:12px 25px;
+background:#0066cc;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#004999;
+}
+
+#result{
+margin-top:20px;
+text-align:left;
+font-size:17px;
+}
 </style>
+
 </head>
 <body>
 
 <div class="box">
+
 <h2>NITT Certificate Verification</h2>
 
 <input type="text" id="cid" placeholder="Enter Certificate ID">
+
 <br>
-<button onclick="verify()">Verify</button>
+
+<button onclick="verify()">Verify Certificate</button>
 
 <div id="result"></div>
+
 </div>
 
 <script>
-function verify(){
-var id=document.getElementById("cid").value;
 
-if(id=="NITT001"){
-document.getElementById("result").innerHTML=
-"✅ VERIFIED<br><br>Name: Rukshad Ali<br>Course: Safety Officer Training<br>Status: Valid";
+const certificates={
+
+"NITT001":{
+name:"Rukshad Ali",
+course:"Safety Officer Training",
+status:"VALID",
+issue:"12/03/2025",
+expiry:"Lifetime"
+},
+
+"NITT002":{
+name:"NEYAJ ALI",
+course:"Industrial Safety Management",
+status:"VALID",
+issue:"23/05/2026",
+expiry:"Lifetime"
+}
+
+};
+
+function verify(){
+
+let id=document.getElementById("cid").value.trim().toUpperCase();
+
+if(certificates[id]){
+
+let c=certificates[id];
+
+document.getElementById("result").innerHTML=`
+<h3 style="color:green;">✅ Certificate Verified</h3>
+
+<b>Certificate ID:</b> ${id}<br><br>
+
+<b>Name:</b> ${c.name}<br><br>
+
+<b>Course:</b> ${c.course}<br><br>
+
+<b>Issue Date:</b> ${c.issue}<br><br>
+
+<b>Expiry:</b> ${c.expiry}<br><br>
+
+<b>Status:</b> ${c.status}
+
+`;
+
 }else{
-document.getElementById("result").innerHTML="❌ Certificate Not Found";
+
+document.getElementById("result").innerHTML=`
+<h3 style="color:red;">❌ Certificate Not Found</h3>
+Please check the Certificate ID.
+`;
+
 }
+
 }
+
 </script>
 
 </body>
